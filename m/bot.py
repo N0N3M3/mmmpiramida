@@ -250,22 +250,22 @@ async def cabinet(call: typing.Union[types.CallbackQuery, types.Message], state:
 
 @dp.callback_query_handler(lambda c: c.data == 'AFFILATES 👥', state='*')
 @dp.message_handler(lambda m: m.text == 'AFFILATES 👥', state='*')
-async def AFFILATES 👥_inline_handler(call: typing.Union[types.CallbackQuery, types.Message]):
+async def referals_inline_handler(call: typing.Union[types.CallbackQuery, types.Message]):
     with db_session.create_session() as session:
         session: sqlalchemy.orm.Session
         with session.begin():
             user = session.query(User).where(User.user_id == call.from_user.id).first()
-            amount_primary_AFFILATES 👥s = session.query(User).where(
+            amount_primary_referals = session.query(User).where(
                 User.referer_first_level_id == call.from_user.id).count()
-            amount_secondary_AFFILATES 👥s = session.query(User).where(
+            amount_secondary_referals = session.query(User).where(
                 User.referer_second_level_id == call.from_user.id).count()
-            amount_ternary_AFFILATES 👥s = session.query(User).where(
+            amount_ternary_referals = session.query(User).where(
                 User.referer_third_level_id == call.from_user.id).count()
             text = f"""
 Your referral link: https://t.me/{BOT_USERNAME}?start={call.from_user.id}
-1st level referals: {amount_primary_AFFILATES 👥s}
-2nd level referals: {amount_secondary_AFFILATES 👥s}
-3rd level referals: {amount_ternary_AFFILATES 👥s}
+1st level referals: {amount_primary_referals}
+2nd level referals: {amount_secondary_referals}
+3rd level referals: {amount_ternary_referals}
 Ваш баланс: <b>{int(user.balance)}</b>$
 
 
@@ -377,8 +377,8 @@ async def subscription(call: typing.Union[types.CallbackQuery, types.Message]):
     kb = types.InlineKeyboardMarkup()
     with db_session.create_session() as session:
         with session.begin():
-            TARIFF ⚙️ = session.query(Tariff)
-            for tariff in TARIFF ⚙️:
+            tariffs = session.query(Tariff).all()
+            for tariff in tariffs:
                 if tariff.active:
                     kb.row(
                         types.InlineKeyboardButton(tariff.name,
