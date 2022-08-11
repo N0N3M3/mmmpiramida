@@ -2,8 +2,8 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 
-TOKEN = '5383063117:AAFHLWuo1Y6UV0T1LwlucIkXZKFYw_RAdI8'
-ADMIN_IDS = (5482991191, 2122549702, 725449291)
+TOKEN = '5480233748:AAFNX1vkTfWLb2EgFh-3KxN67Phgw2ZVewA'
+ADMIN_IDS = (5482991191, 2122549702, 5397931786)
 BOT_USERNAME = 'USBIT_miningbot'
 BTC_DEPOSIT_ADDRESS = 'bc1qqx444jytve6u6h8sdchn75sqxhad642cx926n2'
 LTC_DEPOSIT_ADDRESS = 'ltc1q2evsmgjs2kalqs30gg4s3r0hafegnhnl32m6nr'
